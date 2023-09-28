@@ -1,5 +1,6 @@
 {
   "name": "project-wordle",
+  "description": "This project is part of the Joy of React course (created and taught by Joshua Comeau)",
   "private": true,
   "version": "0.0.0",
   "type": "module",
