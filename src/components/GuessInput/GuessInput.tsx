@@ -1,6 +1,12 @@
 import { useState } from "react";
+import type { Guess } from "@/types";
 
-const GuessInput = () => {
+type GuessInputProps = {
+	guessResults: Guess[];
+	setGuessResults: React.Dispatch<React.SetStateAction<Guess[]>>;
+};
+
+const GuessInput = ({ guessResults, setGuessResults }: GuessInputProps) => {
 	const [guessInput, setGuessInput] = useState("");
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -8,6 +14,12 @@ const GuessInput = () => {
 
 		console.log(`%c Your Input: ${guessInput}`, "color: yellow");
 
+		const newGuess: Guess = {
+			content: guessInput,
+			id: crypto.randomUUID(),
+		};
+
+		setGuessResults([...guessResults, newGuess]);
 		setGuessInput("");
 	}
 
