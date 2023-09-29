@@ -1,9 +1,9 @@
 import { useState } from "react";
-import type { Guess } from "@/types";
+import type { TGuess } from "@/types";
 
 type GuessInputProps = {
-	guessResults: Guess[];
-	setGuessResults: React.Dispatch<React.SetStateAction<Guess[]>>;
+	guessResults: TGuess[];
+	setGuessResults: React.Dispatch<React.SetStateAction<TGuess[]>>;
 };
 
 const GuessInput = ({ guessResults, setGuessResults }: GuessInputProps) => {

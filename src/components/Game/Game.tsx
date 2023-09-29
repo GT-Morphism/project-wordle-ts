@@ -3,7 +3,7 @@ import GuessResults from "@/components/GuessResults";
 import { sample } from "@/utils";
 import { WORDS } from "@/data";
 import { useState } from "react";
-import type { Guess } from "@/types";
+import type { TGuess } from "@/types";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -11,7 +11,7 @@ const answer = sample(WORDS);
 console.log(`%c The answer: ${answer}`, "color: green");
 
 const Game = () => {
-	const [guessResults, setGuessResults] = useState<Guess[]>([]);
+	const [guessResults, setGuessResults] = useState<TGuess[]>([]);
 
 	return (
 		<>
