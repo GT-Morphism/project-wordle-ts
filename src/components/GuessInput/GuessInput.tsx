@@ -6,7 +6,7 @@ const GuessInput = () => {
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
-		console.log(guessInput);
+		console.log(`%c Your Input: ${guessInput}`, "color: yellow");
 
 		setGuessInput("");
 	}
@@ -18,8 +18,9 @@ const GuessInput = () => {
 				id="guess-input"
 				type="text"
 				required={true}
-				pattern=".{5,}"
+				pattern="[a-zA-Z]{5}"
 				title="You need to type 5 characters."
+				minLength={5}
 				maxLength={5}
 				value={guessInput}
 				onChange={(event) => {
