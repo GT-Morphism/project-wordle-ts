@@ -1,12 +1,24 @@
 import { useState } from "react";
-import type { TGuess } from "@/types";
+import type { TGameEndStatus, TGuess } from "@/types";
+import { NUM_OF_GUESSES_ALLOWED } from "@/constants";
 
 type GuessInputProps = {
 	guessResults: TGuess[];
+	answer: string;
+	gameEndeStatus: TGameEndStatus | undefined;
 	setGuessResults: React.Dispatch<React.SetStateAction<TGuess[]>>;
+	setGameEndStatus: React.Dispatch<
+		React.SetStateAction<TGameEndStatus | undefined>
+	>;
 };
 
-const GuessInput = ({ guessResults, setGuessResults }: GuessInputProps) => {
+const GuessInput = ({
+	guessResults,
+	answer,
+	gameEndeStatus,
+	setGuessResults,
+	setGameEndStatus,
+}: GuessInputProps) => {
 	const [guessInput, setGuessInput] = useState("");
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -14,13 +26,22 @@ const GuessInput = ({ guessResults, setGuessResults }: GuessInputProps) => {
 
 		console.log(`%c Your Input: ${guessInput}`, "color: yellow");
 
-		const newGuess: Guess = {
+		const newGuess: TGuess = {
 			content: guessInput,
 			id: crypto.randomUUID(),
 		};
 
 		setGuessResults([...guessResults, newGuess]);
+		handleSetGameEndStatus();
 		setGuessInput("");
+	}
+
+	function handleSetGameEndStatus() {
+		if (guessInput == answer) {
+			setGameEndStatus("happy");
+		} else if (guessResults.length == NUM_OF_GUESSES_ALLOWED - 1) {
+			setGameEndStatus("sad");
+		}
 	}
 
 	return (
@@ -30,6 +51,7 @@ const GuessInput = ({ guessResults, setGuessResults }: GuessInputProps) => {
 				id="guess-input"
 				type="text"
 				required={true}
+				disabled={gameEndeStatus != undefined}
 				pattern="[a-zA-Z]{5}"
 				title="You need to type 5 characters."
 				minLength={5}

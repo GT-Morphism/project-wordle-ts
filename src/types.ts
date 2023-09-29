@@ -9,3 +9,5 @@ export type TCheckedGuess = {
 	letter: string;
 	status: TCheckedGuessStatus;
 };
+
+export type TGameEndStatus = "happy" | "sad";
