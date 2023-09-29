@@ -15,7 +15,7 @@ const Game = () => {
 
 	return (
 		<>
-			<GuessResults guessResults={guessResults} />
+			<GuessResults guessResults={guessResults} answer={answer} />
 			<GuessInput
 				guessResults={guessResults}
 				setGuessResults={setGuessResults}
