@@ -1,5 +1,6 @@
-import { sample } from '../../utils';
-import { WORDS } from '../../data';
+import GuessInput from "../GuessInput";
+import { sample } from "../../utils";
+import { WORDS } from "../../data";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -7,7 +8,11 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 const Game = () => {
-  return <>Put a game here!</>;
-}
+	return (
+		<>
+			<GuessInput />
+		</>
+	);
+};
 
 export default Game;
